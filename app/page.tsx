@@ -1,5 +1,6 @@
+/* eslint-disable react/no-unescaped-entities */
 import Image from "next/image";
-import Me from "@/public/IMG_1312.jpg";
+import Me from "@/public/petit.png";
 
 export default function Home() {
   return (
@@ -15,13 +16,13 @@ export default function Home() {
           <Image
             alt="Picture of jan marshal"
             src={Me}
-            className="h-48 w-48 rounded-full object-cover object-top"
+            className="h-72 w-72 rounded-full object-cover object-top"
           />
           <h3 className="pt-4 pb-2 text-2xl font-bold leading-8 tracking-tight">
-            Jan Marshal
+            Mak-Lj
           </h3>
           <p className="text-gray-500 dark:text-gray-300 text-center">
-            Hey my name is Jan and I am a Full Stack Developer
+            Hey my name is El Hadji Mama Sarr and, I am from Ziguichor.
           </p>
 
           <div className="flex space-x-5 pt-6">
@@ -66,22 +67,20 @@ export default function Home() {
 
         <div className="prose max-w-none prose-lg pt-8 pb-7 dark:prose-invert xl:col-span-2">
           <p>
-            Hey everyone my name is Jan, I am 18 years old and i am a Full Stack
-            developer based in Hamburg/Germany
+            Hello world, je suis El Hadj Mama Sarr.
           </p>
           <p>
-            I love building Full Stack applications with React and to share them
-            on YouTube. When I discovered React, I was blown away by its
-            interactivity and speed. Its virtual DOM and efficient rendering
-            mechanisms allowed me to create dynamic user interfaces that
-            responded to user actions in real-time.
+            je suis diplômé en e-commerce réseau et télécommunication et je détiens un DUT2 en Gestion des Entreprises et Administrations.
+            J'ai un permis B depuis 2014, en l'occurrence j'ai une très bonne expérience de conduite.
+            J'ai eu l'honneur de travailler avec certaines d'ONG telles que SHELTER FOR LIFE, l'ONU et DÉCLIC en collaboration avec l'USAID.
+
           </p>
           <p>
-            Building applications with Reactand sharing them on YouTube is my
-            ultimate combination of creative expression, technical expertise,
-            and community engagement. I am thrilled to continue this journey,
-            honing my skills, and inspiring others in the process.
+            En outre, mes expériences professionnelles m'octroient un profil polyvalent car comme le stipule mon CV, j'ai effectué divers stages dans plusieurs domaines.
+            Ainsi, mes compétences s'étendent du Call Center au Digital Analist en passant par la gestion de projet, la comptabilité, les Ressources Humaines et enfin les techniques de communications et de commercialisations. Avec ma formation tant théorique que pratique , je suis prêt à  relever de nouveaux défis, répondre aux attentes et octroyer une satisfaction complète à l'employeur.
           </p>
+          <p>Je reste à votre disposition pour plus de détails.
+            Merci d'avoir accordé, de votre précieux temps, à l'étude de mon dossier.</p>
         </div>
       </div>
     </div>
