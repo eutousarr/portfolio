@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Form from "../components/Form";
 import { prisma } from "../db";
+import SingleGuestbook from "@/components/SingleGuestbook";
+import { spawn } from "child_process";
+import { getAuthSession } from "@/utils/auth";
 
 async function getEntries() {
   const data = await prisma.guestbook.findMany({
@@ -20,6 +23,7 @@ export const metadata: Metadata = {
   description: "Portfolio of El Hadji Mama Sarr",
 };
 export default async function Guestbook() {
+  const session = await getAuthSession();
   const data = await getEntries();
   return (
     <div className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -36,8 +40,13 @@ export default async function Guestbook() {
 
           <div className="flex flex-col space-y-2">
             {data.map((entry) => (
-              <div key={entry.id} className="w-full text-sm break-words">
-                {entry.message}
+              <div key={entry.id} className="flex items-center justify-start text-sm border-b-3 h-16">
+              {session?.user.isAdmin === true 
+                ? (
+                <div className="bg-red-800 text-neutral-900 dark:text-neutral-100 rounded-md px-3 py-1 cursor-pointer">Delete</div>)
+                : ( <span>{entry.username}</span> ) }
+                <div className="ml-5">{entry.message}</div>
+                <hr />
               </div>
             ))}
           </div>

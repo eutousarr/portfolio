@@ -1,11 +1,17 @@
 "use client";
-
+import { signOut, useSession, signIn } from "next-auth/react";
 import { Disclosure } from "@headlessui/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Themebutton from "./Themebutton";
+import UserLinks from "./UserLinks";
+/* eslint-disable react/no-unescaped-entities */
+import Image from "next/image";
+import Logo from "public/logo.png";
 
 export default function Navbar() {
+  const { status } = useSession();
+
   let pathname = usePathname() || "/";
   return (
     <Disclosure as="nav">
@@ -15,7 +21,11 @@ export default function Navbar() {
             <div className="flex justfiy-between h-16">
               <div className="flex justify-between w-full">
                 <div className="flex items-center">
-                  <Link href="/">
+                  <Image
+                    alt="Picture of jan marshal"
+                    src={Logo}
+                    className="h-[48px] w-[96px] mr-8 rounded-lg object-cover object-top"
+                  />                  <Link href="/">
                     <h1 className="text-2xl font-medium">
                       Lj <span className="text-teal-500">Sarr</span>
                     </h1>
@@ -26,36 +36,34 @@ export default function Navbar() {
                   <Link
                     href="/"
                     prefetch
-                    className={`${
-                      pathname === "/"
-                        ? "border-teal-500 dark:text-white h-full inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                        : "border-transparent text-gray-500 dark:text-gray-300 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                    }`}
+                    className={`${pathname === "/"
+                      ? "border-teal-500 dark:text-white h-full inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                      : "border-transparent text-gray-500 dark:text-gray-300 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                      }`}
                   >
                     Home
                   </Link>
                   <Link
                     href="/guestbook"
                     prefetch
-                    className={`${
-                      pathname === "/guestbook"
-                        ? "border-teal-500 dark:text-white h-full inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                        : "border-transparent text-gray-500 dark:text-gray-300 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                    }`}
+                    className={`${pathname === "/guestbook"
+                      ? "border-teal-500 dark:text-white h-full inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                      : "border-transparent text-gray-500 dark:text-gray-300 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                      }`}
                   >
                     Guestbook
                   </Link>
                   <Link
                     href="/projects"
                     prefetch
-                    className={`${
-                      pathname === "/projects"
-                        ? "border-teal-500 dark:text-white h-full inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                        : "border-transparent text-gray-500 dark:text-gray-300 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                    }`}
+                    className={`${pathname === "/projects"
+                      ? "border-teal-500 dark:text-white h-full inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                      : "border-transparent text-gray-500 dark:text-gray-300 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                      }`}
                   >
                     Projects
                   </Link>
+                  <UserLinks />
                   <Themebutton />
                 </div>
               </div>
@@ -104,36 +112,49 @@ export default function Navbar() {
               <Link
                 href="/"
                 prefetch
-                className={`${
-                  pathname == "/"
-                    ? "bg-teal-50  border-teal-500 text-teal-500 block pl-3 pr-4 py-2 border-l-4 text-base font-medium dark:bg-gray-800"
-                    : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-teal-500 block pl-3 pr-4 py-2 dark:hover:bg-gray-700 border-l-4 text-base font-medium dark:text-white"
-                } `}
+                className={`${pathname == "/"
+                  ? "bg-teal-50  border-teal-500 text-teal-500 block pl-3 pr-4 py-2 border-l-4 text-base font-medium dark:bg-gray-800"
+                  : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-teal-500 block pl-3 pr-4 py-2 dark:hover:bg-gray-700 border-l-4 text-base font-medium dark:text-white"
+                  } `}
               >
                 Home
               </Link>
               <Link
                 href="/guestbook"
                 prefetch
-                className={`${
-                  pathname == "/guestbook"
-                    ? "bg-teal-50 border-teal-500 text-teal-500 block pl-3 pr-4 py-2 border-l-4 text-base font-medium dark:bg-gray-800"
-                    : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-teal-500 block pl-3 pr-4 py-2 dark:hover:bg-gray-700 border-l-4 text-base font-medium dark:text-white"
-                } `}
+                className={`${pathname == "/guestbook"
+                  ? "bg-teal-50 border-teal-500 text-teal-500 block pl-3 pr-4 py-2 border-l-4 text-base font-medium dark:bg-gray-800"
+                  : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-teal-500 block pl-3 pr-4 py-2 dark:hover:bg-gray-700 border-l-4 text-base font-medium dark:text-white"
+                  } `}
               >
                 Guestbook
               </Link>
               <Link
                 href="/projects"
                 prefetch
-                className={`${
-                  pathname == "/projects"
-                    ? "bg-teal-50 border-teal-500 text-teal-500 block pl-3 pr-4 py-2 border-l-4 text-base font-medium dark:bg-gray-800"
-                    : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-teal-500 block pl-3 pr-4 py-2 dark:hover:bg-gray-700 border-l-4 text-base font-medium dark:text-white"
-                } `}
+                className={`${pathname == "/projects"
+                  ? "bg-teal-50 border-teal-500 text-teal-500 block pl-3 pr-4 py-2 border-l-4 text-base font-medium dark:bg-gray-800"
+                  : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-teal-500 block pl-3 pr-4 py-2 dark:hover:bg-gray-700 border-l-4 text-base font-medium dark:text-white"
+                  } `}
               >
                 Projects
               </Link>
+              {status === "authenticated" ? (
+                <div>
+                  <span className={`${pathname == "/logout"
+                    ? "bg-teal-50  border-teal-500 text-teal-500 block pl-3 pr-4 py-2 border-l-4 text-base font-medium dark:bg-gray-800"
+                    : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-teal-500 block pl-3 pr-4 py-2 dark:hover:bg-gray-700 border-l-4 text-base font-medium dark:text-white"
+                    } `}
+                    onClick={() => signOut()}>
+                    Logout
+                  </span>
+                </div>
+              ) : (
+                <Link className={`${pathname == "/login"
+                  ? "bg-teal-50  border-teal-500 text-teal-500 block pl-3 pr-4 py-2 border-l-4 text-base font-medium dark:bg-gray-800"
+                  : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-teal-500 block pl-3 pr-4 py-2 dark:hover:bg-gray-700 border-l-4 text-base font-medium dark:text-white"
+                  } `} href="/login">Login</Link>
+              )}
             </div>
           </Disclosure.Panel>
         </>

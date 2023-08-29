@@ -15,3 +15,15 @@ export async function postEntry(formData: FormData) {
 
   revalidatePath("/guestbook");
 }
+
+export async function deleteEntry(id: String) {
+  "use server";
+
+  const data = await prisma.guestbook.delete({
+    where: {      
+      id: "hello",
+    },
+  });
+
+  revalidatePath("/guestbook");
+}
