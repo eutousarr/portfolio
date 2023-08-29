@@ -1,9 +1,10 @@
+import type { Metadata } from "next";
 import Form from "../components/Form";
 import { prisma } from "../db";
 
 async function getEntries() {
   const data = await prisma.guestbook.findMany({
-    take: 50,
+    take: 5,
     orderBy: {
       created_at: "desc",
     },
@@ -14,6 +15,10 @@ async function getEntries() {
 
 export const revalidate = 60;
 
+export const metadata: Metadata = {
+  title: "El Hadji Mama Sarr | Guest Page",
+  description: "Portfolio of El Hadji Mama Sarr",
+};
 export default async function Guestbook() {
   const data = await getEntries();
   return (
@@ -22,6 +27,7 @@ export default async function Guestbook() {
         <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
           Guestbook
         </h1>
+        <p>Laissez un message</p>
       </div>
 
       <div className="w-full">

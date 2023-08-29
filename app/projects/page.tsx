@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { client } from "../lib/sanity";
+import type { Metadata } from "next";
 
 interface Data {
   title: string;
@@ -8,7 +9,11 @@ interface Data {
   _id: string;
   imageUrl: string;
 }
-
+ 
+export const metadata: Metadata = {
+  title: "El Hadji Mama Sarr | Projets",
+  description: "Portfolio of El Hadji Mama Sarr",
+};
 async function getProjects() {
   const query = `*[_type == "project"] {
     title,
