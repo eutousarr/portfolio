@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Form from "../components/Form";
 import { prisma } from "../db";
-import SingleGuestbook from "@/components/SingleGuestbook";
-import { spawn } from "child_process";
 import { getAuthSession } from "@/utils/auth";
 
 async function getEntries() {
